@@ -5,6 +5,9 @@ import matplotlib.pyplot as plt
 data = pd.read_csv("../Resources/foodData.csv", header=None)
 df = pd.DataFrame(data)
 
+# profit in 10000 dollars
+# population also in 10000
+
 
 def calculateCost(X, Y, thetas):
     m = len(X)
@@ -43,7 +46,7 @@ def computeGradientDescent(X, Y, theta, alpha, iterations):
 
 
 thetas = computeGradientDescent(X, Y, thetas, learningRate, 1500)
-print('h(x) =', thetas[1, :][0],'+', thetas[0, :][0], '* X') # equation of our predicted line with thetas optimized
+print('h(x) =', thetas[1, :][0], '+', thetas[0, :][0], '* X')  # equation of our predicted line with thetas optimized
 # calculating our predicted y
 yCap = np.dot(X, thetas)
 plt.plot(X[:, 0], yCap, color='r', label='linear regression')
@@ -53,3 +56,20 @@ plt.ylabel('Profit of food truck')
 plt.title('Linear regression univariate')
 plt.legend(loc='best')
 plt.show()
+
+
+def predictInMatrices(population, theta):
+    # input in matrices
+    profit = np.dot(population, theta)
+    return profit
+
+
+def predictInValues(population):
+    profit = thetas[1, :][0] + thetas[0, :][0] * (population/10000)
+    return profit * 10000
+
+
+predict1 = predictInMatrices(np.array([3.5, 1]), thetas) * 10000
+predict2 = predictInValues(35000)
+print(predict1[0])
+print(predict2)
