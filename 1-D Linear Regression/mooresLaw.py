@@ -74,4 +74,4 @@ def predict(year):
 
 
 predict1 = predict(2016)
-print(predict1)
+print(predict1) # predict doesnt work
